@@ -42,21 +42,7 @@ class NodeStructure{
       }
     
       has(data) {
-      const hasData=(node,data)=>{
-          if(!node){
-              return false;
-          }
-          if(node.data===data){
-              return true;
-          }
-          if(node.data>data){
-              return hasData(node.left,data)
-          }
-          if(node.data<data){
-             return hasData(node.right,data)
-          }
-      }
-      return hasData(this.rootElem,data)
+      return this.find(data)?true:false;
       }
       find(data) {
           const findData=(node,data)=>{
@@ -77,7 +63,41 @@ class NodeStructure{
       }
     
       remove(data) {
-        
+          const removeElem=(node,data)=>{
+              if(!node){
+                  return null;
+              }
+              if(node.data <data){
+                 node.right=removeElem(node.right,data);
+                  return node;
+              }
+              if(node.data>data){
+                  node.left=removeElem(node.left,data);
+                  return node;  
+              }else{
+                  if(!node.left && !node.right){
+                      return null;
+                  }
+                  if(!node.left){
+                      node=node.right;
+                      return node;
+                  }
+                  if(!node.right){
+                      node=node.left;
+                      return node;
+                  }
+                  let maxFromLeft=node.left;
+                  while(maxFromLeft.right){
+                      maxFromLeft=maxFromLeft.right;
+                  }
+                  node.data=maxFromLeft.data;
+                  node.right=removeElem(node.right,maxFromLeft.data);
+                  return node;
+              }
+
+
+          }
+          this.rootElem=removeElem(this.rootElem,data);    
     }
       min() {
           let iteration=this.rootElem;
@@ -101,7 +121,6 @@ class NodeStructure{
           return iteration.data 
     }}
     
-
 module.exports = {
   BinarySearchTree
 };
