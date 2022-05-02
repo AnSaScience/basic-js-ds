@@ -6,6 +6,7 @@
 * Implement simple binary search tree according to task description
 * using Node from extensions
 */
+
 class NodeStructure{
   constructor(data){
       this.data=data;
@@ -79,13 +80,28 @@ class NodeStructure{
         
     }
       min() {
-       
+          let iteration=this.rootElem;
+          if(!iteration){
+              return null;
+          }
+          while(iteration.left){
+              iteration=iteration.left
+          }
+          return iteration.data
         }
     
       max() {
-   
+          let iteration=this.rootElem;
+          if(!iteration){
+              return null;
+          }
+          while(iteration.right){
+              iteration=iteration.right
+          }
+          return iteration.data 
     }}
     
+
 module.exports = {
   BinarySearchTree
 };
