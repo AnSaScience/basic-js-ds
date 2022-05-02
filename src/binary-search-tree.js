@@ -9,8 +9,8 @@
 class NodeStructure{
   constructor(data){
       this.data=data;
-      this.leftElem=null;
-      this.rightElem=null;
+      this.left=null;
+      this.right=null;
   }
   }
   class BinarySearchTree {
@@ -30,16 +30,62 @@ class NodeStructure{
                   return node;
               }
               if(data<node.data){
-                  node.leftElem=addElem(node.leftElem,data);
+                  node.left=addElem(node.left,data);
               }
               else if( data>node.data){
-                  node.rightElem=addElem(node.rightElem,data);
+                  node.right=addElem(node.right,data);
               }
               return node;
           }
           this.rootElem=addElem(this.rootElem,data);
       }
+    
+      has(data) {
+      const hasData=(node,data)=>{
+          if(!node){
+              return false;
+          }
+          if(node.data===data){
+              return true;
+          }
+          if(node.data>data){
+              return hasData(node.left,data)
+          }
+          if(node.data<data){
+             return hasData(node.right,data)
+          }
+      }
+      return hasData(this.rootElem,data)
+      }
+      find(data) {
+          const findData=(node,data)=>{
+              if(!node){
+                  return null;
+              }
+              if(node.data===data){
+                  return node;
+              }
+              if(node.data>data){
+                  return findData(node.left,data);
+              }
+              if(node.data<data){
+                  return findData(node.right,data);
+              }
+          }
+          return findData(this.rootElem,data);
+      }
+    
+      remove(data) {
+        
     }
+      min() {
+       
+        }
+    
+      max() {
+   
+    }}
+    
 module.exports = {
   BinarySearchTree
 };
