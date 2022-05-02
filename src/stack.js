@@ -19,7 +19,7 @@ class Stack {
   push( element ) {
     // throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
-     this.arr=[...this.arr,element];    
+     this.arr[this.arr.length]=element;    
   }
 
   pop() {
@@ -31,7 +31,7 @@ class Stack {
   }
 
   peek() {
-    throw new NotImplementedError('Not implemented');
+    // throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
     return this.arr[this.arr.length-1]
   }
